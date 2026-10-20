@@ -35,9 +35,16 @@ if not check_password():
     st.stop()
 # ===============================================
 
-# 🟢 以下是密碼通過後才會看到的真實儀表板內容
+# 🟢 密碼通過後的真實儀表板內容
 st.title("📊 銷量即時監控與有效單排行榜")
-st.success("🔓 驗證成功！歡迎回來。")
+
+# 🔄 新增：專屬的重新整理按鈕（點了只會更新資料，不會要求重新輸入密碼！）
+col_top1, col_top2 = st.columns([3, 1])
+with col_top1:
+    st.success("🔓 驗證成功！歡迎回來。")
+with col_top2:
+    if st.button("🔄 重新整理資料", use_container_width=True):
+        st.rerun()
 
 HISTORY_FILE = "history.csv"
 
